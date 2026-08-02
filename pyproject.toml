@@ -1,0 +1,12 @@
+[project]
+name = "task-tracker"
+version = "0.1.0"
+description = "CLI para gerenciamento de tarefas"
+requires-python = ">=3.8"
+
+[project.scripts]
+task-cli = "task_cli.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

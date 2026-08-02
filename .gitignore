@@ -1,0 +1,15 @@
+*.egg-info/
+build/
+dist/
+
+__pycache__/
+*.pyc
+
+venv/
+.venv/
+env/
+
+*.json
+
+.vscode/
+.idea/
