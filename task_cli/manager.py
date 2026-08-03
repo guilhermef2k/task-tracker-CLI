@@ -1,5 +1,6 @@
 from datetime import datetime 
 from task_cli.storage import load_tasks, save_task
+from pprint import pprint
 
 def add_task(description:str)->None:
     """Cria uma nova task e salva no arquivo JSON"""
@@ -19,3 +20,21 @@ def add_task(description:str)->None:
     tasks.append(nova_task)
     save_task(tasks)
     print(f"Tarefa adicionada com sucesso! (ID={new_id})")
+
+def list_tasks()->None:
+    """Lista todas as tarefas salvas"""
+    tasks = load_tasks()
+
+    print("-"*22+"TAREFAS"+"-"*22)
+    for task in tasks:
+        print_task(task)
+def print_task(task:dict)->None:
+        print("┌" + "─" * 52 + "┐")
+        print(f"│ TAREFA #{task['id']:<42} │")
+        print("├" + "─" * 52 + "┤")
+        print(f"│ Descrição:     {task['description']:<35} │")
+        print(f"│ Status:        {task['status']:<35} │")
+        print(f"│ Criado em:     {task['creatAt']:<35} │")
+        print(f"│ Atualizado em: {task['updateAt']:<35} │")
+        print("└" + "─" * 52 + "┘")
+        print()
