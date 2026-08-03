@@ -1,5 +1,5 @@
 import argparse
-from task_cli.manager import add_task
+from task_cli.manager import add_task, list_tasks
 def main():
     parser = argparse.ArgumentParser(description="Task Tracker CLI")
     subparsers = parser.add_subparsers(dest="comando", required=True)
@@ -22,6 +22,7 @@ def main():
         add_task(args.descricao)
     elif args.comando == "list":
         print("Listando tarefas...")
+        list_tasks()
     elif args.comando == "delete":
         print(f"Removendo tarefa {args.id}")
 
