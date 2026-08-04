@@ -10,6 +10,7 @@ def main():
 
     # subcomando: list
     parser_list = subparsers.add_parser("list", help="Lista as tarefas")
+    parser_list.add_argument("status", type=str, nargs="?", default=None, choices=["todo", "in-progress", "done"], help="Status das tarefas a listar")
 
     # subcomando: delete
     parser_delete = subparsers.add_parser("delete", help="Remove uma tarefa")
@@ -22,7 +23,10 @@ def main():
         add_task(args.descricao)
     elif args.comando == "list":
         print("Listando tarefas...")
-        list_tasks()
+        if not args.status:
+            list_tasks("all")
+        else:
+            list_tasks(args.status)
     elif args.comando == "delete":
         print(f"Removendo tarefa {args.id}")
 
