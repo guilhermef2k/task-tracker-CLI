@@ -21,14 +21,24 @@ def add_task(description:str)->None:
     save_task(tasks)
     print(f"Tarefa adicionada com sucesso! (ID={new_id})")
 
-def list_tasks()->None:
+def list_tasks(status:str)->None:
     """Lista todas as tarefas salvas"""
-    tasks = load_tasks()
+    tasks = load_tasks()       
 
+    if status != "all":
+         tasks = [task for task in tasks if task["status"]==status]
+
+    if not tasks:
+        print("\nNenhuma tarefa encontrada com esse status!\n")
+        return
+    
     print("-"*22+"TAREFAS"+"-"*22)
+
     for task in tasks:
         print_task(task)
+
 def print_task(task:dict)->None:
+        """Exibe uma tarefa em formato de card"""
         print("┌" + "─" * 52 + "┐")
         print(f"│ TAREFA #{task['id']:<42} │")
         print("├" + "─" * 52 + "┤")
