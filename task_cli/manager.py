@@ -48,3 +48,15 @@ def print_task(task:dict)->None:
         print(f"│ Atualizado em: {task['updateAt']:<35} │")
         print("└" + "─" * 52 + "┘")
         print()
+
+def update_task(id:int, new_description:str)->None:
+    tasks = load_tasks()
+    task_update = next((task for task in tasks if task["id"]==id), None)
+        
+    if task_update:
+        task_update.update(description = new_description)
+        print("Tarefa atualizada com sucesso")
+
+        save_task(tasks)
+    else:
+        print("Nenhuma task com esse ID encontrado...")
