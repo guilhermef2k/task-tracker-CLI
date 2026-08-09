@@ -21,6 +21,10 @@ def main():
     parser_update = subparsers.add_parser("mark-in-progress", help="Atualiza o status das tarefas")
     parser_update.add_argument("id", type=int, help="ID da tarefa para ser marcada como 'in-progress'")
 
+    # subcomando: mark-done
+    parser_update = subparsers.add_parser("mark-done", help="Atualiza o status das tarefas")
+    parser_update.add_argument("id", type=int, help="ID da tarefa para ser marcada como 'done'")
+
     # subcomando: delete
     parser_delete = subparsers.add_parser("delete", help="Remove uma tarefa")
     parser_delete.add_argument("id", type=int, help="ID da tarefa a remover")
@@ -40,6 +44,8 @@ def main():
         update_task(args.id, args.nova_descricao)
     elif args.comando == "mark-in-progress":
         update_status("in-progress", args.id)
+    elif args.comando == "mark-done":
+        update_status("done", args.id)
     elif args.comando == "delete":
         print(f"Removendo tarefa {args.id}")
 
