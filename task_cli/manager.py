@@ -60,3 +60,17 @@ def update_task(id:int, new_description:str)->None:
         save_task(tasks)
     else:
         print("Nenhuma task com esse ID encontrado...")
+
+def update_status(new_status:str, id:int)->None:
+    """Altera o status da tarefa desejada"""
+
+    tasks = load_tasks()
+    task_update = next((task for task in tasks if task["id"]==id), None)
+    now = datetime.now().isoformat()
+    if task_update:
+         task_update["status"]=new_status
+         task_update["updateAt"]=now
+         save_task(tasks)
+         print("Tarefa atualizada com sucesso!")
+    else:
+         print("Nenhuma task com esse ID encontrado...")
