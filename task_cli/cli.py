@@ -1,5 +1,5 @@
 import argparse
-from task_cli.manager import add_task, list_tasks, update_task, update_status
+from task_cli.manager import add_task, list_tasks, update_task, update_status, delete
 def main():
     parser = argparse.ArgumentParser(description="Task Tracker CLI")
     subparsers = parser.add_subparsers(dest="comando", required=True)
@@ -48,6 +48,7 @@ def main():
         update_status("done", args.id)
     elif args.comando == "delete":
         print(f"Removendo tarefa {args.id}")
+        delete(args.id)
 
 if __name__ == "__main__":
     main()

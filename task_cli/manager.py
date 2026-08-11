@@ -74,3 +74,13 @@ def update_status(new_status:str, id:int)->None:
          print("Tarefa atualizada com sucesso!")
     else:
          print("Nenhuma task com esse ID encontrado...")
+
+def delete(id:int)->None:
+    tasks = load_tasks()
+    task_delete = next((task for task in tasks if task["id"]==id), None)
+    if task_delete:
+        tasks.remove(task_delete)
+        save_task(tasks)
+        print("\nTarefa removida com sucesso!\n")
+    else:
+        print("Nenhuma task com esse ID encontrado...")
