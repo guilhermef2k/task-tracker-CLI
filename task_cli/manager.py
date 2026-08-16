@@ -38,18 +38,19 @@ def list_tasks(status:str)->None:
         print_task(task)
 
 def print_task(task:dict)->None:
-        """Exibe uma tarefa em formato de card"""
-        print("┌" + "─" * 52 + "┐")
-        print(f"│ TAREFA #{task['id']:<42} │")
-        print("├" + "─" * 52 + "┤")
-        print(f"│ Descrição:     {task['description']:<35} │")
-        print(f"│ Status:        {task['status']:<35} │")
-        print(f"│ Criado em:     {task['creatAt']:<35} │")
-        print(f"│ Atualizado em: {task['updateAt']:<35} │")
-        print("└" + "─" * 52 + "┘")
-        print()
+    """Exibe uma tarefa em formato de card"""
+    print("┌" + "─" * 52 + "┐")
+    print(f"│ TAREFA #{task['id']:<42} │")
+    print("├" + "─" * 52 + "┤")
+    print(f"│ Descrição:     {task['description']:<35} │")
+    print(f"│ Status:        {task['status']:<35} │")
+    print(f"│ Criado em:     {task['creatAt']:<35} │")
+    print(f"│ Atualizado em: {task['updateAt']:<35} │")
+    print("└" + "─" * 52 + "┘")
+    print()
 
 def update_task(id:int, new_description:str)->None:
+    """Atualiza a descrição da tarefa"""
     tasks = load_tasks()
     task_update = next((task for task in tasks if task["id"]==id), None)
     now = datetime.now().isoformat()
@@ -63,7 +64,6 @@ def update_task(id:int, new_description:str)->None:
 
 def update_status(new_status:str, id:int)->None:
     """Altera o status da tarefa desejada"""
-
     tasks = load_tasks()
     task_update = next((task for task in tasks if task["id"]==id), None)
     now = datetime.now().isoformat()
@@ -76,6 +76,7 @@ def update_status(new_status:str, id:int)->None:
          print("Nenhuma task com esse ID encontrado...")
 
 def delete(id:int)->None:
+    """Apaga a tarefa especificada"""
     tasks = load_tasks()
     task_delete = next((task for task in tasks if task["id"]==id), None)
     if task_delete:
