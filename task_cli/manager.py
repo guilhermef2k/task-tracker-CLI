@@ -52,11 +52,11 @@ def print_task(task:dict)->None:
 def update_task(id:int, new_description:str)->None:
     tasks = load_tasks()
     task_update = next((task for task in tasks if task["id"]==id), None)
-        
-    if task_update:
+    now = datetime.now().isoformat()
+    if task_update: 
         task_update.update(description = new_description)
+        task_update["updateAt"]=now
         print("Tarefa atualizada com sucesso")
-
         save_task(tasks)
     else:
         print("Nenhuma task com esse ID encontrado...")
